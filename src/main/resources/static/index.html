@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HETI Subspace Radar</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" >
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="btn-group special">
+            <button class="btn btn-primary" id="invader-button">Получить список захватчиков</button>
+            <button class="btn btn-primary" id="map-button" disabled>Получить карту вторжения</button>
+            <button class="btn btn-primary" id="search-button" disabled>Поиск захватчиков</button>
+            <button class="btn btn-success" id="send-button" disabled>Отправить данные на проверку</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <textarea rows="151" cols="574" id="map-container"></textarea>
+    </div>
+</div>
+
+<div id="invader-hold"></div>
+<pre id="response"></pre>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

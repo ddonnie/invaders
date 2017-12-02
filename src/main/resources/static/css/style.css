@@ -1,0 +1,24 @@
+#map-container {
+    font-size: 4px;
+    font-family: monospace;
+}
+
+.btn-group.special {
+    display: flex;
+}
+
+.special .btn {
+    flex: 1
+}
+
+#invader-hold {
+    position: fixed;
+    left: 0;
+    top: 10%;
+}
+
+#response {
+    position: fixed;
+    right: 0;
+    top: 10%;
+}

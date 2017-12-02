@@ -1,13 +1,11 @@
 package rb142.pogorelaya.app.dto;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import java.util.List;
 
 public class ResultDTO {
 
     String mapId;
-    List<DetectedInvaders> detectedInvaders;
+    List<DetectedInvaderDTO> detectedInvaders;
 
     public ResultDTO() {
     }
@@ -20,46 +18,11 @@ public class ResultDTO {
         this.mapId = mapId;
     }
 
-    public List<DetectedInvaders> getDetectedInvaders() {
+    public List<DetectedInvaderDTO> getDetectedInvaders() {
         return detectedInvaders;
     }
 
-    public void setDetectedInvaders(List<DetectedInvaders> detectedInvaders) {
+    public void setDetectedInvaders(List<DetectedInvaderDTO> detectedInvaders) {
         this.detectedInvaders = detectedInvaders;
-    }
-
-    @JsonRootName(value = "detectedInvaders")
-    public static class DetectedInvaders {
-
-        String name;
-        int x;
-        int y;
-
-        public DetectedInvaders() {
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
     }
 }

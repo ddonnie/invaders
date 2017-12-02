@@ -1,5 +1,6 @@
 package rb142.pogorelaya.app.services.impl;
 
+import rb142.pogorelaya.app.dto.DetectedInvaderDTO;
 import rb142.pogorelaya.app.dto.InputDTO;
 import rb142.pogorelaya.app.dto.ResultDTO;
 import rb142.pogorelaya.app.services.SearchService;
@@ -15,6 +16,7 @@ public class SearchServiceImpl implements SearchService {
 
         ResultDTO result = new ResultDTO();
         result.setMapId(inputDTO.getSituation().getId());
+        result.setDetectedInvaders(new ArrayList<>());
 
         List<String> inputMap;
         inputMap = Arrays.asList(inputDTO.getSituation().getMap().split("\\n"));
@@ -33,16 +35,16 @@ public class SearchServiceImpl implements SearchService {
                     if (x >= 0) {
                         System.out.println("INVADER FOUND!");
                         System.out.println("invader type " + invader.getKey() + "\ninvader coords: " + x + ":" + y);
-                        ResultDTO.DetectedInvaders foundInvader = new ResultDTO.DetectedInvaders();
-                        foundInvader.setName(invader.getKey());
-                        foundInvader.setX(x);
-                        foundInvader.setY(y);
-                        result.getDetectedInvaders().add(foundInvader);
+                        DetectedInvaderDTO detectedInvader = new DetectedInvaderDTO();
+                        detectedInvader.setName(invader.getKey());
+                        detectedInvader.setX(x);
+                        detectedInvader.setY(y);
+                        result.getDetectedInvaders().add(detectedInvader);
                     }
                 }
             }
         }
-
+        
         return result;
     }
 

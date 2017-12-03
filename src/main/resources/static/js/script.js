@@ -10,6 +10,7 @@ var invaders,
 invader_button.onclick = getInvaders;
 map_button.onclick = getMap;
 search_button.onclick = searchInvaders;
+send_button.onclick = sendResult;
 
 function getInvaders() {
     var xhttp = new XMLHttpRequest();
@@ -47,6 +48,7 @@ function searchInvaders() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             document.getElementById("response").innerHTML = this.responseText;
+            result = JSON.parse(this.response);
         }
     };
     var data = JSON.stringify({
@@ -74,4 +76,15 @@ function showMap(map) {
     var map_container = document.getElementById("map-container").innerHTML = map;
 }
 
+function sendResult() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://radar.lafox.net/api/checkMyResult ", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            alert(this.response)
+        }
+    };
+    xhttp.send(JSON.stringify(result));
+}
 

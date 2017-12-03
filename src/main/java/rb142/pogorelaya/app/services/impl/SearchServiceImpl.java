@@ -31,8 +31,8 @@ public class SearchServiceImpl implements SearchService {
         for (int y = 0; y < inputMap.size(); y++) {
             for (Map.Entry<String, String[]> invader : invadersArrayed.entrySet()) {
                 if (invader.getValue().length <= (inputMap.size() - y - 1)) {
-                    int x = checkForInvader(invader.getValue(), y, inputMap);
-                    if (x >= 0) {
+                    int x = checkForInvader(invader.getValue(), y, inputMap, 0);
+                    while (x >= 0) {
                         System.out.println("INVADER FOUND!");
                         System.out.println("invader type " + invader.getKey() + "\ninvader coords: " + x + ":" + y);
                         DetectedInvaderDTO detectedInvader = new DetectedInvaderDTO();
@@ -40,19 +40,22 @@ public class SearchServiceImpl implements SearchService {
                         detectedInvader.setX(x);
                         detectedInvader.setY(y);
                         result.getDetectedInvaders().add(detectedInvader);
+                        x = checkForInvader(invader.getValue(), y, inputMap, x + invader.getValue()[0].length());
                     }
                 }
             }
         }
-        
+
         return result;
     }
 
-    private int checkForInvader(String[] face, int y, List<String> inputMap) {
-        int prevX = inputMap.get(y).indexOf(face[0]);
+    private int checkForInvader(String[] face, int y, List<String> inputMap, int fromIndex) {
+        int prevX = inputMap.get(y).indexOf(face[0],fromIndex);
+        System.out.println("fromIndex: "+fromIndex+". prevX: "+prevX);
         if (prevX >= 0) {
             for (String faceLayer : face) {
-                int currX = inputMap.get(y).indexOf(faceLayer);
+                int currX = inputMap.get(y).indexOf(faceLayer,fromIndex);
+                System.out.println("currX="+currX);
                 if (currX == prevX) {
                     y++;
                 } else {
